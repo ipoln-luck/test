@@ -4,18 +4,20 @@ import fastifyEnv from "@fastify/env";
 import { envSchema } from "./config/env.config.js";
 import { registerErrorHandler } from "./plugins/error.plugin.js"
 import { successResponse } from "./utils/api-response.utils.js";
+import { registerPostgres } from "./integrations/postgresql/postgres.js";
 
-export function buildApp() {
+export async function buildApp() {
     const app = Fastify({
         logger: true,
     });
 
-    app.register(fastifyEnv, {
+    await app.register(fastifyEnv, {
         schema: envSchema,
         dotenv: true,
     });
 
-    registerErrorHandler(app)
+    registerErrorHandler(app);
+    await registerPostgres(app);
 
     app.register(cors, {
         origin: (_origin, callback) => callback(null, app.config.CORS_ORIGIN),

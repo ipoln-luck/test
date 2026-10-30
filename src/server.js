@@ -1,6 +1,6 @@
 import { buildApp } from "./app.js";
 
-const app = buildApp();
+const app = await buildApp();
 
 try {
   await app.ready();

@@ -8,11 +8,17 @@
   "main": "index.js",
   "scripts": {
     "dev": "node --watch src/server.js",
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "migrate:create": "node-pg-migrate create",
+    "migrate:up": "node --env-file-if-exists=.env ./node_modules/node-pg-migrate/bin/node-pg-migrate up --database-url-var POSTGRES_DATABASE_URL",
+    "migrate:down": "node --env-file-if-exists=.env ./node_modules/node-pg-migrate/bin/node-pg-migrate down --database-url-var POSTGRES_DATABASE_URL"
   },
   "dependencies": {
     "@fastify/cors": "^11.3.1",
     "@fastify/env": "^7.0.1",
-    "fastify": "^5.12.7"
+    "@fastify/postgres": "^6.1.1",
+    "fastify": "^5.12.7",
+    "node-pg-migrate": "^9.0.0",
+    "pg": "^8.23.1"
   }
 }
