@@ -10,6 +10,15 @@ Backend API built with Fastify and PostgreSQL. This guide describes the project 
 - `node-pg-migrate` for database schema migrations
 - `@fastify/swagger` and `@fastify/swagger-ui` for API documentation
 
+## Extending the project
+
+As the API grows, add libraries, shared code, folders, or commands when they help support the change:
+
+- Add a dependency with npm and commit the updated `package.json` and `package-lock.json`. Prefer a focused dependency that fits the layer where it will be used.
+- Put reusable code in a shared folder that reflects its purpose, such as `utils/`, `constants/`, `plugins/`, or `integrations/`. Keep feature-specific logic with that feature. Add a clearly named folder under `src/` if a new shared category is needed.
+- Put repeatable commands in `package.json` under `scripts`. When adding or changing a command, update the scripts list in this guide with its purpose and any required arguments or configuration.
+- Put runtime configuration in environment variables and document new variables in `.env.example` and `src/config/env.config.js`, as described below.
+
 ## Getting started
 
 Install dependencies and create a local environment file:
